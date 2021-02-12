@@ -17,6 +17,9 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({extended: true}))
 // Устанавливаем путь к статическим файлам
 app.use(express.static(path.join((__dirname, 'public'))))
+// Устанавливаем путь к установленному jquery
+app.use('/js', express.static(path.join((__dirname, 'node_modules', 'jquery', 'dist'))))
+
 
 app.get('/', (req, res) => {
     Post.find({}).then(posts => {
