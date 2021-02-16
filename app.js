@@ -2,10 +2,11 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
+const staticAsset = require('static-asset')     // Библиотека для создания хэшей
 
 
 // Подключаем объекты модели
-const Post = require('./models/post')
+
 
 
 // Сощдаес приложение express
@@ -15,6 +16,8 @@ const app = express()
 app.set('view engine', 'ejs')
 // Подключаем bodyParser для распарсивания тела запроса
 app.use(bodyParser.urlencoded({extended: true}))
+// Подключаем staticAsset к папке public для добавления хэшей
+app.use(staticAsset(path.join(__dirname, 'public')))
 // Устанавливаем путь к статическим файлам
 app.use(express.static(path.join((__dirname, 'public'))))
 // Устанавливаем путь к установленному jquery
@@ -22,27 +25,9 @@ app.use('/js', express.static(path.join((__dirname, 'node_modules', 'jquery', 'd
 
 
 app.get('/', (req, res) => {
-    Post.find({}).then(posts => {
-        res.render('index', {posts: posts})
-    })
+        res.render('index')
 })
 
-app.get('/create', (req, res) => {
-    res.render('create')
-})
 
-app.post('/create', (req, res) => {
-    // Получаем данные из тела запроса и деструктурируем его
-    const {title, body} = req.body
-
-    // Создаем объект модели Post
-    Post.create({
-        title: title,
-        body:body
-    }).then(post => console.log(post.id))
-
-    // Переходим на главную страницу
-    res.redirect('/')
-})
 
 module.exports = app

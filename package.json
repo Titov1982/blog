@@ -4,7 +4,7 @@
   "description": "Blog",
   "main": "index.js",
   "scripts": {
-    "dev": "PORT=3000 nodemon index.js",
+    "dev": "grunt & PORT=3000 nodemon index.js",
     "start": "PORT=3000 node index.js"
   },
   "keywords": [],
@@ -13,7 +13,13 @@
   "devDependencies": {
     "eslint": "^7.19.0",
     "eslint-plugin-node": "^11.1.0",
-    "nodemon": "^2.0.7"
+    "grunt": "^1.3.0",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-watch": "^1.1.0",
+    "nodemon": "^2.0.7",
+    "sass": "^1.32.7"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -21,6 +27,7 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
-    "mongoose": "^5.11.15"
+    "mongoose": "^5.11.15",
+    "static-asset": "^0.6.0"
   }
 }
