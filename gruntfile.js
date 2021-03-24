@@ -27,6 +27,26 @@ module.exports = function(grunt) {
             }
         },
 
+        // Настраиваем плагин объединения js файлов
+        concat: {
+            dist: {
+                // Исходные файлы
+                src: ['./dev/js/auth.js'],
+                dest: './public/js/script.js',  // Целевой объединенный файл
+                options: {
+                    separator: ';'
+                }
+            },
+        },
+
+        // Настройка плагина сжатия js файлов
+        uglify: {
+            build: {
+                src: './public/js/script.js',
+                dest: './public/js/script.min.js'
+            }
+        },
+
         // Настраиваем отслеживание изменений файлов
         watch: {
             options: {
@@ -43,13 +63,23 @@ module.exports = function(grunt) {
                     spawn : false,
                 }
             },
-            // scripts : {
-            //     files : ['./dev/js/**/*.js', './dist/js/**/*.js'],
-            //     tasks : [/*'concat', 'uglify', 'browserSync'*/],
-            //     options : {
-            //         spawn : false,
-            //     },
-            // },
+
+            js : {
+                files : ['./dev/js/**/*.js'],
+                tasks : ['concat'],
+                options : {
+                    spawn : false,
+                }
+            },
+
+            ugl: {
+                files : ['./public/js/script.js'],
+                tasks : ['uglify'],
+                options : {
+                    spawn : false,
+                }
+            }
+
         },
 
         autoprefixer: {
@@ -72,8 +102,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch')
     grunt.loadNpmTasks('grunt-autoprefixer');
 
+    grunt.loadNpmTasks('grunt-contrib-concat')
+    grunt.loadNpmTasks('grunt-contrib-uglify')
+
+
 
     // ============= // Создаем задачи ========== //
-    grunt.registerTask('default', ['sass', 'autoprefixer', 'watch'])
+    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'autoprefixer', 'watch'])
 
 };
