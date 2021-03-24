@@ -8,5 +8,6 @@ const nameDb = 'body'
 // Конфигурация HTTP порта
 module.exports = {
     PORT: process.env.PORT || 3000,
-    MONGO_URL: `mongodb+srv://${usernameDb}:${passwordDb}@cluster0.cdyuk.mongodb.net/${nameDb}?retryWrites=true&w=majority`
+    MONGO_URL: `mongodb+srv://${usernameDb}:${passwordDb}@cluster0.cdyuk.mongodb.net/${nameDb}?retryWrites=true&w=majority`,
+    IS_PRODUCTION: process.env.NODE_ENV === 'production'
 }

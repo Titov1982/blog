@@ -2,10 +2,10 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "Blog",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "grunt & PORT=3000 nodemon index.js",
-    "start": "PORT=3000 node index.js"
+    "dev": "grunt & PORT=3000 nodemon app.js",
+    "start": "PORT=3000 node app.js"
   },
   "keywords": [],
   "author": "Titov Andrey",
